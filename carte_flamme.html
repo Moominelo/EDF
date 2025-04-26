@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7fbac84fcc1f9fb492e9a47208aabc25 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+                bottom: 50px; left: 50px; 
+                z-index:9999; 
+                background-color: white;
+                padding: 10px;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <p style="margin-bottom: 5px;"><strong>Légende des Centrales Thermiques</strong></p>
+        <div style="margin-top: 5px;">
+    
+            <div style="margin: 4px 0;">
+                <i class="fa fa-fire" style="color: red;"></i>
+                Charbon
+            </div>
+        
+            <div style="margin: 4px 0;">
+                <i class="fa fa-fire" style="color: blue;"></i>
+                Fioul Domestique
+            </div>
+        
+            <div style="margin: 4px 0;">
+                <i class="fa fa-fire" style="color: green;"></i>
+                Gaz naturel
+            </div>
+        
+            <div style="margin: 4px 0;">
+                <i class="fa fa-industry" style="color: purple;"></i>
+                Gaz naturel/Fioul Domestique
+            </div>
+        
+        </div>
+    </div>
+    
+    
+            <div class="folium-map" id="map_7fbac84fcc1f9fb492e9a47208aabc25" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7fbac84fcc1f9fb492e9a47208aabc25 = L.map(
+                "map_7fbac84fcc1f9fb492e9a47208aabc25",
+                {
+                    center: [46.6034, 1.8883],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ce5795842dc2047dcfecd893a9ad3058 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ce5795842dc2047dcfecd893a9ad3058.addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+        
+    
+            var feature_group_9ad21b599fbeeb80d98507bf3a375a32 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_61e1da6370f04dbe5a58755ac0935062 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_eef3fcce9ef2144908982ec1718d10a4 = L.marker(
+                [47.275129, -1.874592],
+                {
+}
+            ).addTo(marker_cluster_61e1da6370f04dbe5a58755ac0935062);
+        
+    
+            var icon_458c29088cc0ed541c938ed25f59dd3d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a4c85d62857914e4879364669f03b764 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_03797e67a75f9dd783cd4493d1d9cbf9 = $(`<div id="html_03797e67a75f9dd783cd4493d1d9cbf9" style="width: 100.0%; height: 100.0%;">                     <b>CORDEMAIS - CORDEMAIS 4</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Charbon<br>                     Combustible: Charbon<br>                     Puissance: 580 MW<br>                     Région: PAYS DE LA LOIRE<br>                     Département: LOIRE-ATLANTIQUE<br>                     Commune: Cordemais<br>                     Date de mise en service: 1983-12-20                 </div>`)[0];
+                popup_a4c85d62857914e4879364669f03b764.setContent(html_03797e67a75f9dd783cd4493d1d9cbf9);
+            
+        
+
+        marker_eef3fcce9ef2144908982ec1718d10a4.bindPopup(popup_a4c85d62857914e4879364669f03b764)
+        ;
+
+        
+    
+    
+            marker_eef3fcce9ef2144908982ec1718d10a4.bindTooltip(
+                `<div>
+                     CORDEMAIS - CORDEMAIS 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eef3fcce9ef2144908982ec1718d10a4.setIcon(icon_458c29088cc0ed541c938ed25f59dd3d);
+            
+    
+            var marker_2795e761c8476273ea3034c056912d29 = L.marker(
+                [47.275129, -1.874592],
+                {
+}
+            ).addTo(marker_cluster_61e1da6370f04dbe5a58755ac0935062);
+        
+    
+            var icon_132356d792e15e72f090b66009932c4b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9e834d1486f65609c84ea1ff86683f2e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_25bbd85705ca8cb9fc1492c76c636a55 = $(`<div id="html_25bbd85705ca8cb9fc1492c76c636a55" style="width: 100.0%; height: 100.0%;">                     <b>CORDEMAIS - CORDEMAIS 5</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Charbon<br>                     Combustible: Charbon<br>                     Puissance: 580 MW<br>                     Région: PAYS DE LA LOIRE<br>                     Département: LOIRE-ATLANTIQUE<br>                     Commune: Cordemais<br>                     Date de mise en service: 1984-10-10                 </div>`)[0];
+                popup_9e834d1486f65609c84ea1ff86683f2e.setContent(html_25bbd85705ca8cb9fc1492c76c636a55);
+            
+        
+
+        marker_2795e761c8476273ea3034c056912d29.bindPopup(popup_9e834d1486f65609c84ea1ff86683f2e)
+        ;
+
+        
+    
+    
+            marker_2795e761c8476273ea3034c056912d29.bindTooltip(
+                `<div>
+                     CORDEMAIS - CORDEMAIS 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2795e761c8476273ea3034c056912d29.setIcon(icon_132356d792e15e72f090b66009932c4b);
+            
+    
+            marker_cluster_61e1da6370f04dbe5a58755ac0935062.addTo(feature_group_9ad21b599fbeeb80d98507bf3a375a32);
+        
+    
+            feature_group_9ad21b599fbeeb80d98507bf3a375a32.addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+        
+    
+            var feature_group_b7b6a16d1adf6892487d14c4d34c4535 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_74d73877ffe53f9b25ecf9364c29f6db = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_3ce68d779d51d6b0605796af6e623719 = L.marker(
+                [48.791547, 2.417139],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_651a7be21230e356ddb151d600bd40ae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_59ad9c021cb4d9ebb1d9f1f951d452dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4043d1e006d5507e7691e227f7b92df1 = $(`<div id="html_4043d1e006d5507e7691e227f7b92df1" style="width: 100.0%; height: 100.0%;">                     <b>ARRIGHI - ARRIGHI 2</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 129 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: VAL-DE-MARNE<br>                     Commune: Vitry-sur-Seine<br>                     Date de mise en service: 2007-11-23                 </div>`)[0];
+                popup_59ad9c021cb4d9ebb1d9f1f951d452dd.setContent(html_4043d1e006d5507e7691e227f7b92df1);
+            
+        
+
+        marker_3ce68d779d51d6b0605796af6e623719.bindPopup(popup_59ad9c021cb4d9ebb1d9f1f951d452dd)
+        ;
+
+        
+    
+    
+            marker_3ce68d779d51d6b0605796af6e623719.bindTooltip(
+                `<div>
+                     ARRIGHI - ARRIGHI 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3ce68d779d51d6b0605796af6e623719.setIcon(icon_651a7be21230e356ddb151d600bd40ae);
+            
+    
+            var marker_342beda90f7937a797c79c743af9c2bf = L.marker(
+                [48.353318, -3.871479],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_10f525f538b11d0771eda326868b8c9a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_daa3539042b2f00a8b990a924deff664 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_73313587da0753f2d2038ac512effb52 = $(`<div id="html_73313587da0753f2d2038ac512effb52" style="width: 100.0%; height: 100.0%;">                     <b>BRENNILIS - BRENNILIS 3</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 85 MW<br>                     Région: BRETAGNE<br>                     Département: FINISTERE<br>                     Commune: Loqueffret<br>                     Date de mise en service: 1981-01-16                 </div>`)[0];
+                popup_daa3539042b2f00a8b990a924deff664.setContent(html_73313587da0753f2d2038ac512effb52);
+            
+        
+
+        marker_342beda90f7937a797c79c743af9c2bf.bindPopup(popup_daa3539042b2f00a8b990a924deff664)
+        ;
+
+        
+    
+    
+            marker_342beda90f7937a797c79c743af9c2bf.bindTooltip(
+                `<div>
+                     BRENNILIS - BRENNILIS 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_342beda90f7937a797c79c743af9c2bf.setIcon(icon_10f525f538b11d0771eda326868b8c9a);
+            
+    
+            var marker_07d056e70b2dca337f0b388bfb03361e = L.marker(
+                [48.388804, -4.265463],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_67f3aa0b098e477d5342d9086754eb61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c90c4829ab7cd229bb5e4cd9adb13ee = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7fa4f5b4f935698df8e03c1a248479b6 = $(`<div id="html_7fa4f5b4f935698df8e03c1a248479b6" style="width: 100.0%; height: 100.0%;">                     <b>DIRINON - DIRINON 2</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 85 MW<br>                     Région: BRETAGNE<br>                     Département: FINISTERE<br>                     Commune: Dirinon<br>                     Date de mise en service: 1981-12-18                 </div>`)[0];
+                popup_0c90c4829ab7cd229bb5e4cd9adb13ee.setContent(html_7fa4f5b4f935698df8e03c1a248479b6);
+            
+        
+
+        marker_07d056e70b2dca337f0b388bfb03361e.bindPopup(popup_0c90c4829ab7cd229bb5e4cd9adb13ee)
+        ;
+
+        
+    
+    
+            marker_07d056e70b2dca337f0b388bfb03361e.bindTooltip(
+                `<div>
+                     DIRINON - DIRINON 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_07d056e70b2dca337f0b388bfb03361e.setIcon(icon_67f3aa0b098e477d5342d9086754eb61);
+            
+    
+            var marker_4ec383c91061d2b4e51896130a90b499 = L.marker(
+                [48.871786, 2.652626],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_e36c84f7a0ced98dbc3f13495afc3a84 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_09dd8985f64f7ef3384169f882392af2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_955d724f87e3c6521cfa265a6df9bdea = $(`<div id="html_955d724f87e3c6521cfa265a6df9bdea" style="width: 100.0%; height: 100.0%;">                     <b>VAIRES SUR MARNE - VAIRES SUR MARNE 1</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 181 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: SEINE-ET-MARNE<br>                     Commune: Vaires-sur-Marne<br>                     Date de mise en service: 2008-11-03                 </div>`)[0];
+                popup_09dd8985f64f7ef3384169f882392af2.setContent(html_955d724f87e3c6521cfa265a6df9bdea);
+            
+        
+
+        marker_4ec383c91061d2b4e51896130a90b499.bindPopup(popup_09dd8985f64f7ef3384169f882392af2)
+        ;
+
+        
+    
+    
+            marker_4ec383c91061d2b4e51896130a90b499.bindTooltip(
+                `<div>
+                     VAIRES SUR MARNE - VAIRES SUR MARNE 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ec383c91061d2b4e51896130a90b499.setIcon(icon_e36c84f7a0ced98dbc3f13495afc3a84);
+            
+    
+            var marker_1d9cbc736cc4059c0f1f66b92552e508 = L.marker(
+                [48.353318, -3.871479],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_f0c117548620b38db35e6f24fc371627 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2ee22e4e94440eb8cb7aefd76b3e270c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d48c26ecb810914fe92a944054ab3b6d = $(`<div id="html_d48c26ecb810914fe92a944054ab3b6d" style="width: 100.0%; height: 100.0%;">                     <b>BRENNILIS - BRENNILIS 4</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 134 MW<br>                     Région: BRETAGNE<br>                     Département: FINISTERE<br>                     Commune: Loqueffret<br>                     Date de mise en service: 1996-12-12                 </div>`)[0];
+                popup_2ee22e4e94440eb8cb7aefd76b3e270c.setContent(html_d48c26ecb810914fe92a944054ab3b6d);
+            
+        
+
+        marker_1d9cbc736cc4059c0f1f66b92552e508.bindPopup(popup_2ee22e4e94440eb8cb7aefd76b3e270c)
+        ;
+
+        
+    
+    
+            marker_1d9cbc736cc4059c0f1f66b92552e508.bindTooltip(
+                `<div>
+                     BRENNILIS - BRENNILIS 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1d9cbc736cc4059c0f1f66b92552e508.setIcon(icon_f0c117548620b38db35e6f24fc371627);
+            
+    
+            var marker_7bcd7f259337c4aab55a8b2ddc546354 = L.marker(
+                [48.871786, 2.652626],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_ea3775b340f47c69622f2f8039cac326 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6f8a9339bdb8ace64aa16012fe5ccddd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8b9055f507af653910c655949bdd5a6b = $(`<div id="html_8b9055f507af653910c655949bdd5a6b" style="width: 100.0%; height: 100.0%;">                     <b>VAIRES SUR MARNE - VAIRES SUR MARNE 3</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 182 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: SEINE-ET-MARNE<br>                     Commune: Vaires-sur-Marne<br>                     Date de mise en service: 2009-10-26                 </div>`)[0];
+                popup_6f8a9339bdb8ace64aa16012fe5ccddd.setContent(html_8b9055f507af653910c655949bdd5a6b);
+            
+        
+
+        marker_7bcd7f259337c4aab55a8b2ddc546354.bindPopup(popup_6f8a9339bdb8ace64aa16012fe5ccddd)
+        ;
+
+        
+    
+    
+            marker_7bcd7f259337c4aab55a8b2ddc546354.bindTooltip(
+                `<div>
+                     VAIRES SUR MARNE - VAIRES SUR MARNE 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7bcd7f259337c4aab55a8b2ddc546354.setIcon(icon_ea3775b340f47c69622f2f8039cac326);
+            
+    
+            var marker_ca0ec092454bf453e5fff6fe0bd92b6e = L.marker(
+                [48.791547, 2.417139],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_a99ec3267f15e886c3cad769af24b984 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5913adadf6369f0eebea286ca1bb345f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_409d420627bdfdcf19ed74111d90088d = $(`<div id="html_409d420627bdfdcf19ed74111d90088d" style="width: 100.0%; height: 100.0%;">                     <b>ARRIGHI - ARRIGHI 1</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 125 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: VAL-DE-MARNE<br>                     Commune: Vitry-sur-Seine<br>                     Date de mise en service: 1998-02-02                 </div>`)[0];
+                popup_5913adadf6369f0eebea286ca1bb345f.setContent(html_409d420627bdfdcf19ed74111d90088d);
+            
+        
+
+        marker_ca0ec092454bf453e5fff6fe0bd92b6e.bindPopup(popup_5913adadf6369f0eebea286ca1bb345f)
+        ;
+
+        
+    
+    
+            marker_ca0ec092454bf453e5fff6fe0bd92b6e.bindTooltip(
+                `<div>
+                     ARRIGHI - ARRIGHI 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ca0ec092454bf453e5fff6fe0bd92b6e.setIcon(icon_a99ec3267f15e886c3cad769af24b984);
+            
+    
+            var marker_5635d3b00e45953815713eadf0ee5e1a = L.marker(
+                [48.353318, -3.871479],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_df1b4e37b751089c9ff266b1f916174b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8e1df84e4c555ac4b938f585015f9ff2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7662a839d4a0e083711592085ef57f6a = $(`<div id="html_7662a839d4a0e083711592085ef57f6a" style="width: 100.0%; height: 100.0%;">                     <b>BRENNILIS - BRENNILIS 2</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 85 MW<br>                     Région: BRETAGNE<br>                     Département: FINISTERE<br>                     Commune: Loqueffret<br>                     Date de mise en service: 1980-10-30                 </div>`)[0];
+                popup_8e1df84e4c555ac4b938f585015f9ff2.setContent(html_7662a839d4a0e083711592085ef57f6a);
+            
+        
+
+        marker_5635d3b00e45953815713eadf0ee5e1a.bindPopup(popup_8e1df84e4c555ac4b938f585015f9ff2)
+        ;
+
+        
+    
+    
+            marker_5635d3b00e45953815713eadf0ee5e1a.bindTooltip(
+                `<div>
+                     BRENNILIS - BRENNILIS 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5635d3b00e45953815713eadf0ee5e1a.setIcon(icon_df1b4e37b751089c9ff266b1f916174b);
+            
+    
+            var marker_9b3244367d4c91189f1207ca4072ecb4 = L.marker(
+                [48.871786, 2.652626],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_b1f7ba227034a209e184be578259a56f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4b406ddd94902b8ef3e37b0bf2bcb8bd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9eb616aa93b81fa1740e851855a7cba2 = $(`<div id="html_9eb616aa93b81fa1740e851855a7cba2" style="width: 100.0%; height: 100.0%;">                     <b>VAIRES SUR MARNE - VAIRES SUR MARNE 2</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 179 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: SEINE-ET-MARNE<br>                     Commune: Vaires-sur-Marne<br>                     Date de mise en service: 2008-11-17                 </div>`)[0];
+                popup_4b406ddd94902b8ef3e37b0bf2bcb8bd.setContent(html_9eb616aa93b81fa1740e851855a7cba2);
+            
+        
+
+        marker_9b3244367d4c91189f1207ca4072ecb4.bindPopup(popup_4b406ddd94902b8ef3e37b0bf2bcb8bd)
+        ;
+
+        
+    
+    
+            marker_9b3244367d4c91189f1207ca4072ecb4.bindTooltip(
+                `<div>
+                     VAIRES SUR MARNE - VAIRES SUR MARNE 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9b3244367d4c91189f1207ca4072ecb4.setIcon(icon_b1f7ba227034a209e184be578259a56f);
+            
+    
+            var marker_6ebfb6032f52ca704f3d493e86ac91cb = L.marker(
+                [48.388804, -4.265463],
+                {
+}
+            ).addTo(marker_cluster_74d73877ffe53f9b25ecf9364c29f6db);
+        
+    
+            var icon_e9a701414c51b1d83cffd5b695cb5628 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6b50e95b3ea425fe12b8f7f7061c36ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5bb147e3688d5554e4ce5f3257227369 = $(`<div id="html_5bb147e3688d5554e4ce5f3257227369" style="width: 100.0%; height: 100.0%;">                     <b>DIRINON - DIRINON 1</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Fioul Domestique<br>                     Puissance: 85 MW<br>                     Région: BRETAGNE<br>                     Département: FINISTERE<br>                     Commune: Dirinon<br>                     Date de mise en service: 1981-09-28                 </div>`)[0];
+                popup_6b50e95b3ea425fe12b8f7f7061c36ff.setContent(html_5bb147e3688d5554e4ce5f3257227369);
+            
+        
+
+        marker_6ebfb6032f52ca704f3d493e86ac91cb.bindPopup(popup_6b50e95b3ea425fe12b8f7f7061c36ff)
+        ;
+
+        
+    
+    
+            marker_6ebfb6032f52ca704f3d493e86ac91cb.bindTooltip(
+                `<div>
+                     DIRINON - DIRINON 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6ebfb6032f52ca704f3d493e86ac91cb.setIcon(icon_e9a701414c51b1d83cffd5b695cb5628);
+            
+    
+            marker_cluster_74d73877ffe53f9b25ecf9364c29f6db.addTo(feature_group_b7b6a16d1adf6892487d14c4d34c4535);
+        
+    
+            feature_group_b7b6a16d1adf6892487d14c4d34c4535.addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+        
+    
+            var feature_group_132d34faf931c74fd196881f547c56ba = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_e8abe223e54456406e96be5430b34e44 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_d32b7ddbaa7cc78abc7754d25af4b071 = L.marker(
+                [50.296302, 3.315191],
+                {
+}
+            ).addTo(marker_cluster_e8abe223e54456406e96be5430b34e44);
+        
+    
+            var icon_3cf22afdc152439ca1a3e58a26469a30 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a7200b4520acd731df391ca8a238214e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6753f7b79b0dd877a58edef35e5f97c = $(`<div id="html_b6753f7b79b0dd877a58edef35e5f97c" style="width: 100.0%; height: 100.0%;">                     <b>BOUCHAIN - BOUCHAIN 7</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Gaz<br>                     Combustible: Gaz naturel<br>                     Puissance: 585 MW<br>                     Région: HAUTS-DE-FRANCE<br>                     Département: NORD<br>                     Commune: Bouchain<br>                     Date de mise en service: 2016-07-26                 </div>`)[0];
+                popup_a7200b4520acd731df391ca8a238214e.setContent(html_b6753f7b79b0dd877a58edef35e5f97c);
+            
+        
+
+        marker_d32b7ddbaa7cc78abc7754d25af4b071.bindPopup(popup_a7200b4520acd731df391ca8a238214e)
+        ;
+
+        
+    
+    
+            marker_d32b7ddbaa7cc78abc7754d25af4b071.bindTooltip(
+                `<div>
+                     BOUCHAIN - BOUCHAIN 7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d32b7ddbaa7cc78abc7754d25af4b071.setIcon(icon_3cf22afdc152439ca1a3e58a26469a30);
+            
+    
+            var marker_9a47411abf5b0307480fee6a0f7cd6f2 = L.marker(
+                [48.937185, 2.261755],
+                {
+}
+            ).addTo(marker_cluster_e8abe223e54456406e96be5430b34e44);
+        
+    
+            var icon_df67f28a81120edbcbf492d43e4438f8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_14d69ac5bad27ec14b1115ad4a66faf0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cbe564b574ea54ae702e575a87efb6bd = $(`<div id="html_cbe564b574ea54ae702e575a87efb6bd" style="width: 100.0%; height: 100.0%;">                     <b>GENNEVILLIERS - GENNEVILLIERS 1</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Gaz naturel<br>                     Puissance: 203 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: HAUTS-DE-SEINE<br>                     Commune: Gennevilliers<br>                     Date de mise en service: 1994-09-01                 </div>`)[0];
+                popup_14d69ac5bad27ec14b1115ad4a66faf0.setContent(html_cbe564b574ea54ae702e575a87efb6bd);
+            
+        
+
+        marker_9a47411abf5b0307480fee6a0f7cd6f2.bindPopup(popup_14d69ac5bad27ec14b1115ad4a66faf0)
+        ;
+
+        
+    
+    
+            marker_9a47411abf5b0307480fee6a0f7cd6f2.bindTooltip(
+                `<div>
+                     GENNEVILLIERS - GENNEVILLIERS 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9a47411abf5b0307480fee6a0f7cd6f2.setIcon(icon_df67f28a81120edbcbf492d43e4438f8);
+            
+    
+            var marker_d2410394cb3e09bac3f6be70b9f648ea = L.marker(
+                [43.358402, 5.021321],
+                {
+}
+            ).addTo(marker_cluster_e8abe223e54456406e96be5430b34e44);
+        
+    
+            var icon_d07aea53371132fd498074f0f50632d9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_07d79e411058455904d9cf685d836af0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b13ecbc9cb59134d21361dff046ffacc = $(`<div id="html_b13ecbc9cb59134d21361dff046ffacc" style="width: 100.0%; height: 100.0%;">                     <b>MARTIGUES-PONTEAU - MARTIGUES-PONTEAU 6</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Gaz<br>                     Combustible: Gaz naturel<br>                     Puissance: 465 MW<br>                     Région: PROVENCE-ALPES-COTE D'AZUR<br>                     Département: BOUCHES-DU-RHONE<br>                     Commune: Martigues<br>                     Date de mise en service: 2013-06-08                 </div>`)[0];
+                popup_07d79e411058455904d9cf685d836af0.setContent(html_b13ecbc9cb59134d21361dff046ffacc);
+            
+        
+
+        marker_d2410394cb3e09bac3f6be70b9f648ea.bindPopup(popup_07d79e411058455904d9cf685d836af0)
+        ;
+
+        
+    
+    
+            marker_d2410394cb3e09bac3f6be70b9f648ea.bindTooltip(
+                `<div>
+                     MARTIGUES-PONTEAU - MARTIGUES-PONTEAU 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d2410394cb3e09bac3f6be70b9f648ea.setIcon(icon_d07aea53371132fd498074f0f50632d9);
+            
+    
+            var marker_48beaf52489ec4a9f4da2238266a4724 = L.marker(
+                [48.866546, 6.07824],
+                {
+}
+            ).addTo(marker_cluster_e8abe223e54456406e96be5430b34e44);
+        
+    
+            var icon_df0708997196477d63551617f1cd4487 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cb9fa4e9bb786da02cf931024ecc0c82 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_21e8ce82d40dd1781b8bcb815396b1b1 = $(`<div id="html_21e8ce82d40dd1781b8bcb815396b1b1" style="width: 100.0%; height: 100.0%;">                     <b>BLENOD - BLENOD 5</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Gaz<br>                     Combustible: Gaz naturel<br>                     Puissance: 427 MW<br>                     Région: GRAND EST<br>                     Département: MEURTHE-ET-MOSELLE<br>                     Commune: Blénod-lès-Pont-à-Mousson<br>                     Date de mise en service: 2011-10-14                 </div>`)[0];
+                popup_cb9fa4e9bb786da02cf931024ecc0c82.setContent(html_21e8ce82d40dd1781b8bcb815396b1b1);
+            
+        
+
+        marker_48beaf52489ec4a9f4da2238266a4724.bindPopup(popup_cb9fa4e9bb786da02cf931024ecc0c82)
+        ;
+
+        
+    
+    
+            marker_48beaf52489ec4a9f4da2238266a4724.bindTooltip(
+                `<div>
+                     BLENOD - BLENOD 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_48beaf52489ec4a9f4da2238266a4724.setIcon(icon_df0708997196477d63551617f1cd4487);
+            
+    
+            var marker_3e1b169f7a84e7160d1060f5c6097dec = L.marker(
+                [43.358402, 5.021321],
+                {
+}
+            ).addTo(marker_cluster_e8abe223e54456406e96be5430b34e44);
+        
+    
+            var icon_a0880017b700d9e893b27ae349ca490e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9c730538e171f78583476b6353eaa4ad = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fe17bf3931f1067948bd6e08bd1ad00b = $(`<div id="html_fe17bf3931f1067948bd6e08bd1ad00b" style="width: 100.0%; height: 100.0%;">                     <b>MARTIGUES-PONTEAU - MARTIGUES-PONTEAU 5</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Gaz<br>                     Combustible: Gaz naturel<br>                     Puissance: 465 MW<br>                     Région: PROVENCE-ALPES-COTE D'AZUR<br>                     Département: BOUCHES-DU-RHONE<br>                     Commune: Martigues<br>                     Date de mise en service: 2012-08-31                 </div>`)[0];
+                popup_9c730538e171f78583476b6353eaa4ad.setContent(html_fe17bf3931f1067948bd6e08bd1ad00b);
+            
+        
+
+        marker_3e1b169f7a84e7160d1060f5c6097dec.bindPopup(popup_9c730538e171f78583476b6353eaa4ad)
+        ;
+
+        
+    
+    
+            marker_3e1b169f7a84e7160d1060f5c6097dec.bindTooltip(
+                `<div>
+                     MARTIGUES-PONTEAU - MARTIGUES-PONTEAU 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e1b169f7a84e7160d1060f5c6097dec.setIcon(icon_a0880017b700d9e893b27ae349ca490e);
+            
+    
+            marker_cluster_e8abe223e54456406e96be5430b34e44.addTo(feature_group_132d34faf931c74fd196881f547c56ba);
+        
+    
+            feature_group_132d34faf931c74fd196881f547c56ba.addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+        
+    
+            var feature_group_8cbf6467105258c1a23792215575171f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_5ffae7c2eec2e2d9ecacac92b913372e = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_4b8be2f172f1291f9a3a9b9d2a581ca9 = L.marker(
+                [48.38207, 2.847792],
+                {
+}
+            ).addTo(marker_cluster_5ffae7c2eec2e2d9ecacac92b913372e);
+        
+    
+            var icon_32a172e1c49af12670a98955a8ff0384 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "industry",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_37057438b470022d899719acfe80c45e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d528d7c43c1f3705686c7e0e4bc2d4f = $(`<div id="html_8d528d7c43c1f3705686c7e0e4bc2d4f" style="width: 100.0%; height: 100.0%;">                     <b>MONTEREAU - MONTEREAU 5</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Gaz naturel/Fioul Domestique<br>                     Puissance: 185 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: SEINE-ET-MARNE<br>                     Commune: Vernou-la-Celle-sur-Seine<br>                     Date de mise en service: 2010-11-30                 </div>`)[0];
+                popup_37057438b470022d899719acfe80c45e.setContent(html_8d528d7c43c1f3705686c7e0e4bc2d4f);
+            
+        
+
+        marker_4b8be2f172f1291f9a3a9b9d2a581ca9.bindPopup(popup_37057438b470022d899719acfe80c45e)
+        ;
+
+        
+    
+    
+            marker_4b8be2f172f1291f9a3a9b9d2a581ca9.bindTooltip(
+                `<div>
+                     MONTEREAU - MONTEREAU 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b8be2f172f1291f9a3a9b9d2a581ca9.setIcon(icon_32a172e1c49af12670a98955a8ff0384);
+            
+    
+            var marker_24e1eb3121a57bf7c494090a2132aab3 = L.marker(
+                [48.38207, 2.847792],
+                {
+}
+            ).addTo(marker_cluster_5ffae7c2eec2e2d9ecacac92b913372e);
+        
+    
+            var icon_fa34c5ea57f3db10d2256ed4d2e662c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "industry",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d9ccc6e69150b748cc20f7de30320fb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bcdf45f8364112effef099633ce6c8da = $(`<div id="html_bcdf45f8364112effef099633ce6c8da" style="width: 100.0%; height: 100.0%;">                     <b>MONTEREAU - MONTEREAU 6</b><br>                     Type: Thermique à flamme<br>                     Sous-type: Turbine à Combustion (TAC)<br>                     Combustible: Gaz naturel/Fioul Domestique<br>                     Puissance: 185 MW<br>                     Région: ILE-DE-FRANCE<br>                     Département: SEINE-ET-MARNE<br>                     Commune: Vernou-la-Celle-sur-Seine<br>                     Date de mise en service: 2010-11-30                 </div>`)[0];
+                popup_9d9ccc6e69150b748cc20f7de30320fb.setContent(html_bcdf45f8364112effef099633ce6c8da);
+            
+        
+
+        marker_24e1eb3121a57bf7c494090a2132aab3.bindPopup(popup_9d9ccc6e69150b748cc20f7de30320fb)
+        ;
+
+        
+    
+    
+            marker_24e1eb3121a57bf7c494090a2132aab3.bindTooltip(
+                `<div>
+                     MONTEREAU - MONTEREAU 6
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_24e1eb3121a57bf7c494090a2132aab3.setIcon(icon_fa34c5ea57f3db10d2256ed4d2e662c8);
+            
+    
+            marker_cluster_5ffae7c2eec2e2d9ecacac92b913372e.addTo(feature_group_8cbf6467105258c1a23792215575171f);
+        
+    
+            feature_group_8cbf6467105258c1a23792215575171f.addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+        
+    
+            var layer_control_90050d082fbcd71699661fca78087eeb_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_ce5795842dc2047dcfecd893a9ad3058,
+                },
+                overlays :  {
+                    "Centrales Charbon" : feature_group_9ad21b599fbeeb80d98507bf3a375a32,
+                    "Centrales Fioul Domestique" : feature_group_b7b6a16d1adf6892487d14c4d34c4535,
+                    "Centrales Gaz naturel" : feature_group_132d34faf931c74fd196881f547c56ba,
+                    "Centrales Mixtes" : feature_group_8cbf6467105258c1a23792215575171f,
+                },
+            };
+            let layer_control_90050d082fbcd71699661fca78087eeb = L.control.layers(
+                layer_control_90050d082fbcd71699661fca78087eeb_layers.base_layers,
+                layer_control_90050d082fbcd71699661fca78087eeb_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_7fbac84fcc1f9fb492e9a47208aabc25);
+
+        
+</script>
+</html>
